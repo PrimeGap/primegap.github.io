@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Ruby on Rails Quick Tip: passing variables to i18n localized strings | PrimeGap</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<!--[if lt IE 9]>
+	<script src="/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="PrimeGap &raquo; Feed" href="/wp-content/plugins/really-static/static/feed/" />
+
+<link rel="alternate" type="application/rss+xml" title="PrimeGap &raquo; Ruby on Rails Quick Tip: passing variables to i18n localized strings Comments Feed" href="/wp-content/plugins/really-static/static/2011/02/28/rails-quicktip-variables-i18n-localized-strings/feed/" />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='/wp-content/themes/twentythirteen/fonts/genericons.css?ver=2.09' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='/wp-content/themes/twentythirteen/style.css?ver=2013-07-18' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/comment-reply.min.js?ver=3.6.1'></script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel='prev' title='WordPress Quick Tip: Custom wp-login.php Logo &amp; Url without hacks' href='/wp-content/plugins/really-static/static/2011/01/26/wordpress-quick-tip-custom-wp-login-php-logo-url-without-hacks/' />
+<link rel='next' title='jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds)' href='/wp-content/plugins/really-static/static/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/' />
+<meta name="generator" content="WordPress 3.6.1 - really-static 0.5" />
+<link rel='canonical' href='/wp-content/plugins/really-static/static/2011/02/28/rails-quicktip-variables-i18n-localized-strings/' />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-18862123-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+	<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(http://146.185.141.217/wp-content/uploads/2011/02/cropped-bokeh-fullscreen1.jpg) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+			.site-title,
+		.site-description {
+			color: #ffffff;
+		}
+		</style>
+	<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-29 single-format-standard">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="/wp-content/plugins/really-static/static/" title="PrimeGap" rel="home">
+				<h1 class="site-title">PrimeGap</h1>
+				<h2 class="site-description">Web, Smart and Mobile Development</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<h3 class="menu-toggle">Menu</h3>
+					<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>
+					<div class="menu-home-menu-container"><ul id="menu-home-menu" class="nav-menu"><li id="menu-item-330" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-330"><a href="http://primegap.net/">Home</a></li>
+<li id="menu-item-329" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329"><a href="/wp-content/plugins/really-static/static/projects/">Projects</a></li>
+<li id="menu-item-331" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-331"><a href="/wp-content/plugins/really-static/static/category/tutorial/">Tutorials</a></li>
+<li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page current-post-parent menu-item-328"><a href="/wp-content/plugins/really-static/static/about/">About</a></li>
+</ul></div>					<form role="search" method="get" class="search-form" action="/wp-content/plugins/really-static/static/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+
+
+<article id="post-29" class="post-29 post type-post status-publish format-standard hentry category-tutorial tag-i18n tag-quicktip tag-ruby-on-rails">
+	<header class="entry-header">
+
+				<h1 class="entry-title">Ruby on Rails Quick Tip: passing variables to i18n localized strings</h1>
+
+		<div class="entry-meta">
+			<span class="date"><a href="/wp-content/plugins/really-static/static/2011/02/28/rails-quicktip-variables-i18n-localized-strings/" title="Permalink to Ruby on Rails Quick Tip: passing variables to i18n localized strings" rel="bookmark"><time class="entry-date" datetime="2011-02-28T15:24:40+00:00">February 28, 2011</time></a></span><span class="categories-links"><a href="/wp-content/plugins/really-static/static/category/tutorial/" title="View all posts in Tutorial" rel="category tag">Tutorial</a></span><span class="tags-links"><a href="/wp-content/plugins/really-static/static/tag/i18n/" rel="tag">i18n</a>, <a href="/wp-content/plugins/really-static/static/tag/quicktip/" rel="tag">QuickTip</a>, <a href="/wp-content/plugins/really-static/static/tag/ruby-on-rails/" rel="tag">Ruby on Rails</a></span><span class="author vcard"><a class="url fn n" href="/wp-content/plugins/really-static/static/author/lucatironi/" title="View all posts by Luca Tironi" rel="author">Luca Tironi</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p><strong>UPDATE: this tutorial has been updated on May 6th, 2011. Thanks to <a href="http://eq8.eu/">equivalent</a>.</strong></p>
+<p>Hi all,<br />
+today I want to share a little gotcha about Ruby on Rails. </p>
+<p>I usually embed variables inside my erb (or haml) code in my view to do things like these:</p>
+<pre class="brush: ruby; title: ; notranslate" title="">
+&lt;p&gt;
+  Welcome, &lt;%= @user.name %&gt; to our awesome app
+&lt;/p&gt;
+</pre>
+<p>In order to internazionalize my application I needed to pass the username from the view to the localized string.<br />
+To do it you have to pass to the <code>translate</code> method an hash with your variable as value and a key to be referenced inside the locale yml file:</p>
+<pre class="brush: ruby; title: ; notranslate" title="">
+&lt;p&gt;
+  &lt;%= t(&quot;message.welcome&quot;, :username =&gt; @user.name) %&gt;
+&lt;/p&gt;
+</pre>
+<p>While in the locale yaml file you have to embed the placeholder inside double curly brackets, like this <code>{{variable}}</code>:</p>
+<pre class="brush: ruby; title: ; notranslate" title="">
+en:
+  message:
+    welcome: &quot;Welcome, %{username} to our awesome app&quot;
+</pre>
+<p>Bye and I hope you will find this tip useful,<br />
+L</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="/wp-content/plugins/really-static/static/2011/01/26/wordpress-quick-tip-custom-wp-login-php-logo-url-without-hacks/" rel="prev"><span class="meta-nav">&larr;</span> WordPress Quick Tip: Custom wp-login.php Logo &#038; Url without hacks</a>			<a href="/wp-content/plugins/really-static/static/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/" rel="next">jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds) <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="comment even thread-even depth-1" id="dsq-comment-226">
+        <div id="dsq-comment-header-226" class="dsq-comment-header">
+            <cite id="dsq-cite-226">
+http://eq8.eu                <span id="dsq-author-user-226">equivalent</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-226" class="dsq-comment-body">
+            <div id="dsq-comment-message-226" class="dsq-comment-message"><p>welcome: &#8220;welcome %{username} to this &#8230;&#8221;</p>
+<p>&#8230;oh and newer use :default or :scope as placeholder</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucatironi bypostauthor odd alt depth-2" id="dsq-comment-227">
+        <div id="dsq-comment-header-227" class="dsq-comment-header">
+            <cite id="dsq-cite-227">
+http://lucatironi.net                <span id="dsq-author-user-227">Luca Tironi</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-227" class="dsq-comment-body">
+            <div id="dsq-comment-message-227" class="dsq-comment-message"><p>You&#8217;re right. Just after I wrote this it happened to me to discover that they changed the markup, but I never resolved to change the quick tip. Thanks for the input.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-228">
+        <div id="dsq-comment-header-228" class="dsq-comment-header">
+            <cite id="dsq-cite-228">
+http://www.noteng.com                <span id="dsq-author-user-228">Paul Emico</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-228" class="dsq-comment-body">
+            <div id="dsq-comment-message-228" class="dsq-comment-message"><p>Great tip &#8230; </p>
+<p>Thanks a lot.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-229">
+        <div id="dsq-comment-header-229" class="dsq-comment-header">
+            <cite id="dsq-cite-229">
+                <span id="dsq-author-user-229">Ruby developer</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-229" class="dsq-comment-body">
+            <div id="dsq-comment-message-229" class="dsq-comment-message"><p>Thank you! Great work.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-230">
+        <div id="dsq-comment-header-230" class="dsq-comment-header">
+            <cite id="dsq-cite-230">
+                <span id="dsq-author-user-230">Dan</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-230" class="dsq-comment-body">
+            <div id="dsq-comment-message-230" class="dsq-comment-message"><p>Thanks!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-231">
+        <div id="dsq-comment-header-231" class="dsq-comment-header">
+            <cite id="dsq-cite-231">
+                <span id="dsq-author-user-231">German</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-231" class="dsq-comment-body">
+            <div id="dsq-comment-message-231" class="dsq-comment-message"><p>Just what i was looking for, thanks <img src='http://primegap.net/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-232">
+        <div id="dsq-comment-header-232" class="dsq-comment-header">
+            <cite id="dsq-cite-232">
+                <span id="dsq-author-user-232">JWheaton</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-232" class="dsq-comment-body">
+            <div id="dsq-comment-message-232" class="dsq-comment-message"><p>Thanks, that helped a lot!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-233">
+        <div id="dsq-comment-header-233" class="dsq-comment-header">
+            <cite id="dsq-cite-233">
+                <span id="dsq-author-user-233">Abibulluah</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-233" class="dsq-comment-body">
+            <div id="dsq-comment-message-233" class="dsq-comment-message"><p>Thanks.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-234">
+        <div id="dsq-comment-header-234" class="dsq-comment-header">
+            <cite id="dsq-cite-234">
+http://www.facebook.com/bean.winchester                <span id="dsq-author-user-234">Bean Winchester</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-234" class="dsq-comment-body">
+            <div id="dsq-comment-message-234" class="dsq-comment-message"><p>Nice! Thanks!! Briefly and clearly! You`re the man!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-237">
+        <div id="dsq-comment-header-237" class="dsq-comment-header">
+            <cite id="dsq-cite-237">
+                <span id="dsq-author-user-237">Guilherme</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-237" class="dsq-comment-body">
+            <div id="dsq-comment-message-237" class="dsq-comment-message"><p>Thanks!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+var disqus_url = '/wp-content/plugins/really-static/static/2011/02/28/rails-quicktip-variables-i18n-localized-strings/';
+var disqus_identifier = '29 http://primegap.net/?p=29';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'primegap';
+var disqus_title = "Ruby on Rails Quick Tip: passing variables to i18n localized strings";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+
+
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=29';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+
+
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+				<div id="secondary" class="sidebar-container" role="complementary">
+		<div class="widget-area">
+			<aside id="text-2" class="widget widget_text"><h3 class="widget-title">About</h3>			<div class="textwidget"><p><a href="http://andreamostosi.name">Andrea Mostosi</a> lives in Bergamo and works in Milano, Italy<br />
+<a href="http://lucaongaro.eu">Luca Ongaro</a> and <a href="http://lucatironi.net">Luca Tironi</a> live and work in Berlin, Germany.</p>
+<p>They are geeks and proud nerds. They believe in the power of knowledge and the Force.</p>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Twitter</h3>			<div class="textwidget"><p>You should follow us on <a href="http://twitter.com/primegap">Twitter</a></p>
+<p><a href="http://twitter.com/lucaongaro">@lucaongaro</a><br />
+<a href="http://twitter.com/lucatironi">@lucatironi</a><br />
+<a href="http://twitter.com/zenkay">@zenkay</a></p>
+</div>
+		</aside><aside id="nav_menu-2" class="widget widget_nav_menu"><h3 class="widget-title">Menu</h3><div class="menu-home-menu-container"><ul id="menu-home-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-330"><a href="http://primegap.net/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329"><a href="/wp-content/plugins/really-static/static/projects/">Projects</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-331"><a href="/wp-content/plugins/really-static/static/category/tutorial/">Tutorials</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-post-parent menu-item-328"><a href="/wp-content/plugins/really-static/static/about/">About</a></li>
+</ul></div></aside><aside id="meta-3" class="widget widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="http://primegap.net/wp-login.php">Log in</a></li>
+			<li><a href="/wp-content/plugins/really-static/static/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://primegap.disqus.com/latest.rss" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</aside>		</div><!-- .widget-area -->
+	</div><!-- #secondary -->
+
+			<div class="site-info">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'primegap';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        <script type='text/javascript' src='/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushRuby.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeRDark.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['tab-size'] = 2;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery.masonry.min.js?ver=2.1.05'></script>
+<script type='text/javascript' src='/wp-content/themes/twentythirteen/js/functions.js?ver=2013-07-18'></script>
+</body>
+</html>
