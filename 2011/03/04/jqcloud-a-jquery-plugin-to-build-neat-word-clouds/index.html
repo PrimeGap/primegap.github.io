@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds) | PrimeGap</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<!--[if lt IE 9]>
+	<script src="http://primegap.net/wp-content/themes/twentythirteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="PrimeGap &raquo; Feed" href="/feed/" />
+
+<link rel="alternate" type="application/rss+xml" title="PrimeGap &raquo; jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds) Comments Feed" href="/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/feed/" />
+<link rel='stylesheet' id='twentythirteen-fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='http://primegap.net/wp-content/themes/twentythirteen/fonts/genericons.css?ver=2.09' type='text/css' media='all' />
+<link rel='stylesheet' id='twentythirteen-style-css'  href='http://primegap.net/wp-content/themes/twentythirteen/style.css?ver=2013-07-18' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentythirteen-ie-css'  href='http://primegap.net/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/comment-reply.min.js?ver=3.6.1'></script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel='prev' title='Ruby on Rails Quick Tip: passing variables to i18n localized strings' href='/2011/02/28/rails-quicktip-variables-i18n-localized-strings/' />
+<link rel='next' title='Problems with Rake 0.9.0 and Ruby on Rails?' href='/2011/05/25/problems-with-rake-0-9-0-and-ruby-on-rails/' />
+<meta name="generator" content="WordPress 3.6.1 - really-static 0.5" />
+<link rel='canonical' href='/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/' />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-18862123-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+	<style type="text/css" id="twentythirteen-header-css">
+			.site-header {
+			background: url(http://146.185.141.217/wp-content/uploads/2011/02/cropped-bokeh-fullscreen1.jpg) no-repeat scroll top;
+			background-size: 1600px auto;
+		}
+			.site-title,
+		.site-description {
+			color: #ffffff;
+		}
+		</style>
+	<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-25 single-format-standard">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			<a class="home-link" href="/" title="PrimeGap" rel="home">
+				<h1 class="site-title">PrimeGap</h1>
+				<h2 class="site-description">Web, Smart and Mobile Development</h2>
+			</a>
+
+			<div id="navbar" class="navbar">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<h3 class="menu-toggle">Menu</h3>
+					<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>
+					<div class="menu-home-menu-container"><ul id="menu-home-menu" class="nav-menu"><li id="menu-item-330" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-330"><a href="http://primegap.net/">Home</a></li>
+<li id="menu-item-329" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329"><a href="/projects/">Projects</a></li>
+<li id="menu-item-331" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-331"><a href="/category/tutorial/">Tutorials</a></li>
+<li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page current-post-parent menu-item-328"><a href="/about/">About</a></li>
+</ul></div>					<form role="search" method="get" class="search-form" action="/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+		</header><!-- #masthead -->
+
+		<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+
+
+<article id="post-25" class="post-25 post type-post status-publish format-standard hentry category-tutorial tag-javascript tag-jqcloud tag-jquery tag-plugin tag-tag-cloud tag-word-cloud">
+	<header class="entry-header">
+
+				<h1 class="entry-title">jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds)</h1>
+
+		<div class="entry-meta">
+			<span class="date"><a href="/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/" title="Permalink to jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds)" rel="bookmark"><time class="entry-date" datetime="2011-03-04T16:05:20+00:00">March 4, 2011</time></a></span><span class="categories-links"><a href="/category/tutorial/" title="View all posts in Tutorial" rel="category tag">Tutorial</a></span><span class="tags-links"><a href="/tag/javascript/" rel="tag">JavaScript</a>, <a href="/tag/jqcloud/" rel="tag">jQCloud</a>, <a href="/tag/jquery/" rel="tag">jQuery</a>, <a href="/tag/plugin/" rel="tag">plugin</a>, <a href="/tag/tag-cloud/" rel="tag">tag cloud</a>, <a href="/tag/word-cloud/" rel="tag">word cloud</a></span><span class="author vcard"><a class="url fn n" href="/author/lucaongaro/" title="View all posts by Luca Ongaro" rel="author">Luca Ongaro</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Have you ever noticed that tag clouds and word clouds come in many shapes, but they hardly ever look like actual clouds? This fact was bugging me, so I decided to code jQCloud, an open-source jQuery plugin that draws neat cloud-shaped word clouds.</p>
+<div id="attachment_33" class="wp-caption aligncenter" style="width: 503px"><a href="http://www.lucaongaro.eu/demos/jqcloud/"><img src="http://primegap.s3.amazonaws.com/wp-content/uploads/2011/02/Screen-shot-2011-02-28-at-10.46.45-PM.png" alt="jQCloud" width="493" height="322" class="size-full wp-image-33" /></a><p class="wp-caption-text">click the image to see a live demo</p></div>
+<p>It is powered by an algorithm somehow reminiscent of <a href="http://www.wordle.net/">Wordle</a>, but producing pure HTML word clouds, that can be easily styled through CSS.</p>
+<p>Using jQCloud is quite simple. First, make sure to import jQuery and the most recent version of the plugin&#8217;s JavaScript and CSS code, that you can find <a href="https://github.com/lucaong/jQCloud">here</a>.</p>
+<p>Once you have done that, the first step is creating a container element in your HTML, explicitly specifying its dimensions and position (like relative, absolute, or really anything different from static):</p>
+<pre class="brush: xml; title: ; notranslate" title="">
+&lt;div id=&quot;wordcloud&quot; style=&quot;width: 550px; height: 350px; position: relative;&quot;&gt;&lt;/div&gt;
+</pre>
+<p>Then, simply create an array of words, specifying for each of them a text, a weight (its relative &#8220;importance&#8221; in the cloud) and, optionally, a URL. Finally, call the jQCloud method on the container element to release the magic:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+var word_list = [
+   {text: &quot;Lorem&quot;, weight: 15},
+   {text: &quot;Ipsum&quot;, weight: 9, link: &quot;http://jquery.com/&quot;},
+   {text: &quot;Dolor&quot;, weight: 6},
+   {text: &quot;Sit&quot;, weight: 7},
+   {text: &quot;Amet&quot;, weight: 5}
+   // ...other words
+];
+$(document).ready(function() {
+   $(&quot;#wordcloud&quot;).jQCloud(word_list);
+});
+</pre>
+<p>You can style the cloud at will with CSS: just remember that the container element will be given a class of <code>jqcloud</code>, while each word will belong to one of ten classes of relative importance, from <code>w1</code> to <code>w10</code>. Anyway, the best approach is probably to edit the default jqcloud.css file provided in the package.</p>
+<p>Also, remember that jQCloud has a <a href="https://github.com/lucaong/jQCloud">GitHub repository</a>, where you can read the docs, find examples and fork the code.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+
+			</footer><!-- .entry-meta -->
+</article><!-- #post -->
+					<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+
+			<a href="/2011/02/28/rails-quicktip-variables-i18n-localized-strings/" rel="prev"><span class="meta-nav">&larr;</span> Ruby on Rails Quick Tip: passing variables to i18n localized strings</a>			<a href="/2011/05/25/problems-with-rake-0-9-0-and-ruby-on-rails/" rel="next">Problems with Rake 0.9.0 and Ruby on Rails? <span class="meta-nav">&rarr;</span></a>
+		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="comment even thread-even depth-1" id="dsq-comment-189">
+        <div id="dsq-comment-header-189" class="dsq-comment-header">
+            <cite id="dsq-cite-189">
+                <span id="dsq-author-user-189">Ravindra Verma</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-189" class="dsq-comment-body">
+            <div id="dsq-comment-message-189" class="dsq-comment-message"><p>Hi,<br />
+I am facing a problem with this control.<br />
+I am showing 50 words in wordcloud. If I provide the size of the div lower (e.g. 350*250) than  few words are spilling out the div. I set the overflow property of the div to &#8220;auto&#8221; to show the scroll bars and then also it is spilling. Actually the left or top position of the word is negative (e.g. -50), therefore it is spilling over the boundary.<br />
+Is there any static dimensions (width and height) prescribed, below than dimension it will spilling over the boundaries?</p>
+<p>I am using the version 0.2.4<br />
+I am calling the method as:<br />
+ divRow.jQCloud(word_list, {<br />
+                            width: 350,<br />
+                            height: 250<br />
+                        });</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucaongaro bypostauthor odd alt depth-2" id="dsq-comment-190">
+        <div id="dsq-comment-header-190" class="dsq-comment-header">
+            <cite id="dsq-cite-190">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-190">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-190" class="dsq-comment-body">
+            <div id="dsq-comment-message-190" class="dsq-comment-message"><p>Ravindra,<br />
+the readme is very unclear on that. As a matter of fact, the width and height configuration parameters do not affect the overall dimension of the word cloud, but only its aspect ratio. They would be better called xAxisLength and yAxisLength instead of width and height. Currently, if you don&#8217;t want words to spill out of the boundaries, you have either to reduce the font sizes or to enlarge the box so words can fit into its boundaries. I am considering improvements to jQCloud on this particular issue (and I would certainly accept pull requests that address this issue), but unfortunately in the meantime that&#8217;s the only way to go.<br />
+I hope this helps you. Regards,</p>
+<p>Luca</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment even depth-3" id="dsq-comment-208">
+        <div id="dsq-comment-header-208" class="dsq-comment-header">
+            <cite id="dsq-cite-208">
+                <span id="dsq-author-user-208">Ian Warburton</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-208" class="dsq-comment-body">
+            <div id="dsq-comment-message-208" class="dsq-comment-message"><p>There can&#8217;t be too many websites that can accept words spilling out of the area. Is there a fix for this yet?</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-191">
+        <div id="dsq-comment-header-191" class="dsq-comment-header">
+            <cite id="dsq-cite-191">
+http://donbryn.ipage.com                <span id="dsq-author-user-191">buddhabackpacker</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-191" class="dsq-comment-body">
+            <div id="dsq-comment-message-191" class="dsq-comment-message"><p>Thanks for such a cool script.   I am using jqcloud on the index page in the testing website above.   However I get an error in IE8:  &#8216;word_array[..] is not an object in jqcloud-0.4.2.js line 65 char 9.   It works great in firefox and safari but I can&#8217;t seem to track down why it&#8217;s not working in IE8.   I&#8217;ve tried loading your demo page on github directly in IE8 and it works.</p>
+<p>I would be really appreciative of any ideas to track down the error.</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucaongaro bypostauthor even depth-2" id="dsq-comment-192">
+        <div id="dsq-comment-header-192" class="dsq-comment-header">
+            <cite id="dsq-cite-192">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-192">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-192" class="dsq-comment-body">
+            <div id="dsq-comment-message-192" class="dsq-comment-message"><p>buddhabackpacker,<br />
+first of all thanks for your interest in jQCloud! Looking at your code it seems that the problem is due to a trailing comma in the word list that confuses IE (see your code commented below). Try removing it and see if it works <img src='http://primegap.net/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+<p><code><br />
+var word_list = [<br />
+          {text: 'Weddings', weight: 15},<br />
+          {text: 'Community Events', weight: 9},<br />
+          {text: 'Theme Parties', weight: 6},<br />
+          {text: 'Private Clubs', weight: 7},<br />
+          {text: 'Festivals', weight: 5},<br />
+		  {text: 'Restaurants', weight: 11},<br />
+		  {text: 'Society Galas', weight: 5},<br />
+		  {text: 'Dancing', weight: 3},<br />
+		  {text: 'Ear Candy', weight: 12}, // remove this trailing comma<br />
+          // ...other words<br />
+      ];<br />
+</code></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-193">
+        <div id="dsq-comment-header-193" class="dsq-comment-header">
+            <cite id="dsq-cite-193">
+http://nitehood.in                <span id="dsq-author-user-193">Nithin Emmanuel</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-193" class="dsq-comment-body">
+            <div id="dsq-comment-message-193" class="dsq-comment-message"><p>Hi,<br />
+ Thanks a lot for this plugin. I was searching everywhere for something like this. I have a little problem on this. Is there any way i can bring words to the edges to. ie align words from the center, but not in circular manner. it should occupy the borders also, as rectangle or square shape.</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucaongaro bypostauthor even depth-2" id="dsq-comment-194">
+        <div id="dsq-comment-header-194" class="dsq-comment-header">
+            <cite id="dsq-cite-194">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-194">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-194" class="dsq-comment-body">
+            <div id="dsq-comment-message-194" class="dsq-comment-message"><p>Hi Nithin,<br />
+while not implemented in jQCloud yet, arranging words in a rectangle is perfectly feasible. jQCloud moves each word along a spiral until it finds a suitable place, so all it&#8217;s needed is to make the spiral a rectangular one rather than an elliptic one.<br />
+I&#8217;d like to implement the possibility to choose between elliptic and a rectangular shape soon, but I probably won&#8217;t make it before a week. If you feel like to code it yourself, I can give you some guidelines and I&#8217;ll be happy to merge a good pull request into the main distribution.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment byuser comment-author-lucaongaro bypostauthor odd alt depth-2" id="dsq-comment-195">
+        <div id="dsq-comment-header-195" class="dsq-comment-header">
+            <cite id="dsq-cite-195">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-195">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-195" class="dsq-comment-body">
+            <div id="dsq-comment-message-195" class="dsq-comment-message"><p>Nithin,<br />
+I just pushed on GitHub a new version (v0.2.7) adding the &#8216;shape&#8217; option. If you set it to &#8216;rectangular&#8217;  you get a rectangular-shaped cloud. Let me know your opinion <img src='http://primegap.net/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-196">
+        <div id="dsq-comment-header-196" class="dsq-comment-header">
+            <cite id="dsq-cite-196">
+                <span id="dsq-author-user-196">Dhinesh Kumar</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-196" class="dsq-comment-body">
+            <div id="dsq-comment-message-196" class="dsq-comment-message"><p>Hi,<br />
+Thanks for this plugin, Is there any way to convert the JQCloud&#8217;s output div(html tags) to SVG?</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucaongaro bypostauthor odd alt depth-2" id="dsq-comment-197">
+        <div id="dsq-comment-header-197" class="dsq-comment-header">
+            <cite id="dsq-cite-197">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-197">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-197" class="dsq-comment-body">
+            <div id="dsq-comment-message-197" class="dsq-comment-message"><p>Hi Dhinesh,<br />
+this possibility is not currently implemented in the plugin.</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment even depth-3" id="dsq-comment-198">
+        <div id="dsq-comment-header-198" class="dsq-comment-header">
+            <cite id="dsq-cite-198">
+                <span id="dsq-author-user-198">Dhinesh Kumar</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-198" class="dsq-comment-body">
+            <div id="dsq-comment-message-198" class="dsq-comment-message"><p>Finally , I have convert the jqcloud div to svg element.</p>
+<p>var UNDEFINED,SVG_NS = &#8216;http://www.w3.org/2000/svg&#8217;;</p>
+<p>/**<br />
+ * Returns true if the object is not null or undefined.<br />
+ * @param {Object} obj<br />
+ */<br />
+function defined(obj) {<br />
+	return obj !== UNDEFINED &amp;&amp; obj !== null;<br />
+}</p>
+<p>/**<br />
+  * Set or get an attribute or an object of attributes. Can&#8217;t use jQuery attr because<br />
+  * it attempts to set expando properties on the SVG element, which is not allowed.<br />
+  *<br />
+  * @param {Object} el The DOM element to receive the attribute(s)<br />
+  * @param {String|Object} prop The property or an abject of key-value pairs<br />
+  * @param {String} value The value if single property is set<br />
+  */<br />
+function attribute(el, prop, value)<br />
+{<br />
+	var result=null;<br />
+	if (typeof(prop)===&#8217;string&#8217;) {<br />
+		if (defined(value)) {<br />
+			el.setAttribute(prop, value);<br />
+		}<br />
+		else if (el &amp;&amp; el.getAttribute) {<br />
+			result = el.getAttribute(prop);<br />
+		}</p>
+<p>	} else if (defined(prop) &amp;&amp; typeof(prop)===&#8217;object&#8217;) { //key/value pairs<br />
+		var key;<br />
+		for (key in prop) {<br />
+			el.setAttribute(key, prop[key]);<br />
+		}<br />
+	}<br />
+	return result;<br />
+}</p>
+<p> /**<br />
+   * get all basic styles (&#8216;font-family&#8217;,'font-size&#8217;,'color&#8217;) from a DOM element<br />
+   *<br />
+   * @param {Object} el The DOM element from get the styles<br />
+   *<br />
+   */<br />
+function getAllStyles(el)<br />
+{<br />
+	var styles =['font-family','font-size','color'];<br />
+	var svgStyles =["font-family","font-size","fill"];<br />
+	var len = styles.length, style=&#8221;;<br />
+    for (var i = 0; i &lt; len; i++)<br />
+    {<br />
+    	style=style+svgStyles[i]+&#039;:&#039;+ jQuery(el).css(styles[i])+&#039;;&#039;;<br />
+    }<br />
+    return style;<br />
+}</p>
+<p>/**<br />
+ * Parse a Jqcloud div into SVG element<br />
+ *<br />
+ * @param {String} div_id the id of the Jqcloud div<br />
+ */</p>
+<p>function jqCloudToSVG(div_id) {<br />
+	var svg=document.createElementNS(SVG_NS,&quot;svg&quot;);<br />
+	attribute(svg,{xmlns:SVG_NS,version:&#039;1.1&#039;,width:jQuery(&#039;#&#039;+div_id).width(),height:jQuery(&#039;#&#039;+div_id).height()});<br />
+	jQuery(&#039;#&#039;+div_id+&#039; span&#039;).each(function(index, span){<br />
+		var word=jQuery(span).text(),<br />
+			style=getAllStyles(span),<br />
+			svgText =document.createElementNS(SVG_NS,&#039;text&#039;),<br />
+			tspan= document.createElementNS(SVG_NS,&#039;tspan&#039;);</p>
+<p>		attribute(svgText,&#039;x&#039;,parseInt(jQuery(span).css(&#039;left&#039;),10));<br />
+		attribute(svgText,&#039;y&#039;,parseInt(jQuery(span).css(&#039;top&#039;),10));<br />
+		attribute(svgText,&#039;style&#039;,style);<br />
+		tspan.appendChild(document.createTextNode(word));	</p>
+<p>		var lineHeight=(parseInt(jQuery(span).css(&#039;font-size&#039;),10));</p>
+<p>		attribute(tspan,&#039;dy&#039;,lineHeight);</p>
+<p>		svgText.appendChild(tspan);<br />
+		svg.appendChild(svgText);<br />
+	});<br />
+	var svgJQcloud=document.createElement(&#039;div&#039;);<br />
+	jQuery(svgJQcloud).append(svg);<br />
+	return svgJQcloud;<br />
+}</p>
+<p>I didn&#039;t cover all features.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="post pingback">
+        <p>Pingback: <a href='http://www.websanova.com/tutorials/jquery/10-awesome-jquery-tag-cloud-plugins' rel='external nofollow' class='url'>10 Awesome jQuery Tag Cloud Plugins | Websanova</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+    <li class="post pingback">
+        <p>Pingback: <a href='http://www.jquery4u.com/plugins/jquery-cloud-tutorials-plugins/' rel='external nofollow' class='url'>jQuery Cloud - Plugins and Tutorials | jQuery4u</a>()</p>
+    </li>
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-201">
+        <div id="dsq-comment-header-201" class="dsq-comment-header">
+            <cite id="dsq-cite-201">
+                <span id="dsq-author-user-201">Ding</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-201" class="dsq-comment-body">
+            <div id="dsq-comment-message-201" class="dsq-comment-message"><p>Hi I wanna ask, how to show cloud text in zend framework, i try this code<br />
+ var word_list = [<br />
+        {text: "Lorem", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},<br />
+        {text: "Ipsum", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},<br />
+        {text: "Dolor", weight: 9.4},<br />
+        {text: "Sit", weight: 8}<br />
+];<br />
+      $(document).ready(function(){<br />
+        $(&#8220;#myCanvas&#8221;).JQCloud(word);<br />
+      });</p>
+<p>but that can&#8217;t show;<br />
+can u tell me how to show jqcloud on MVC zend framework?<br />
+i need ur help, thanks before</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-202">
+        <div id="dsq-comment-header-202" class="dsq-comment-header">
+            <cite id="dsq-cite-202">
+http://www.tobias-olbrich.de                <span id="dsq-author-user-202">Hochzeitsfotograf</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-202" class="dsq-comment-body">
+            <div id="dsq-comment-message-202" class="dsq-comment-message"><p>Realy a nead Tag Cloud!!!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-203">
+        <div id="dsq-comment-header-203" class="dsq-comment-header">
+            <cite id="dsq-cite-203">
+                <span id="dsq-author-user-203">Hristo</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-203" class="dsq-comment-body">
+            <div id="dsq-comment-message-203" class="dsq-comment-message"><p>How do I add an additional word to an already rendered cloud?</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-204">
+        <div id="dsq-comment-header-204" class="dsq-comment-header">
+            <cite id="dsq-cite-204">
+                <span id="dsq-author-user-204">Eric So</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-204" class="dsq-comment-body">
+            <div id="dsq-comment-message-204" class="dsq-comment-message"><p>Is there a way to to set the IDs of the tag cloud items manually? Instead of a direct link, I need to set click handlers for my tag cloud items.</p>
+<p>Love the plugin!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-205">
+        <div id="dsq-comment-header-205" class="dsq-comment-header">
+            <cite id="dsq-cite-205">
+                <span id="dsq-author-user-205">Cahones Gibson</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-205" class="dsq-comment-body">
+            <div id="dsq-comment-message-205" class="dsq-comment-message"><p>Hey there,</p>
+<p>Your jquery cloud rules. I was wondering if I can have permission to use it in a website I am developing?</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-lucaongaro bypostauthor even depth-2" id="dsq-comment-206">
+        <div id="dsq-comment-header-206" class="dsq-comment-header">
+            <cite id="dsq-cite-206">
+http://www.lucaongaro.eu/                <span id="dsq-author-user-206">Luca Ongaro</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-206" class="dsq-comment-body">
+            <div id="dsq-comment-message-206" class="dsq-comment-message"><p>Sure you can <img src='http://primegap.net/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' />  It is open sourced with MIT License</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-207">
+        <div id="dsq-comment-header-207" class="dsq-comment-header">
+            <cite id="dsq-cite-207">
+http://twitter.com/TangHoongCom                <span id="dsq-author-user-207">Tang Hoong</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-207" class="dsq-comment-body">
+            <div id="dsq-comment-message-207" class="dsq-comment-message"><p>Hi, Luca you are awesome, i will use it as facebook apps =)</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-even depth-1" id="dsq-comment-209">
+        <div id="dsq-comment-header-209" class="dsq-comment-header">
+            <cite id="dsq-cite-209">
+                <span id="dsq-author-user-209">Patrick Kwinten</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-209" class="dsq-comment-body">
+            <div id="dsq-comment-message-209" class="dsq-comment-message"><p>I cannot include a link that contains a question mark e.g. <a href="http://www-03.ibm.com/press/us/en/pressrelease/40768.wss?CE=ISM0008" rel="nofollow">http://www-03.ibm.com/press/us/en/pressrelease/40768.wss?CE=ISM0008</a></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-215">
+        <div id="dsq-comment-header-215" class="dsq-comment-header">
+            <cite id="dsq-cite-215">
+                <span id="dsq-author-user-215">saravanan</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-215" class="dsq-comment-body">
+            <div id="dsq-comment-message-215" class="dsq-comment-message"><p>Hi all, i&#8217;m new to jquery. Jqcloud takes 4s to load in my html page (IE8). Hit test is taking more time in ie8. Is there anything going wrong?.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-even depth-1" id="dsq-comment-216">
+        <div id="dsq-comment-header-216" class="dsq-comment-header">
+            <cite id="dsq-cite-216">
+                <span id="dsq-author-user-216">Darlan Dieterich</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-216" class="dsq-comment-body">
+            <div id="dsq-comment-message-216" class="dsq-comment-message"><p>How add variable with JSON objects? EX: word_list = [myVarOfJSON]&#8220;</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-225">
+        <div id="dsq-comment-header-225" class="dsq-comment-header">
+            <cite id="dsq-cite-225">
+                <span id="dsq-author-user-225">Jonathan Solis</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-225" class="dsq-comment-body">
+            <div id="dsq-comment-message-225" class="dsq-comment-message"><p>If the word_list is the same for several or all pages of a website, is there anyway you could just include it within the js file, instead of having to call it from the HTML file each time? I&#8217;d like to make a word cloud that&#8217;s the same on every page of my blog, but I don&#8217;t want to have to go through and change every html page everytime I want to add a tag or change a weight. Thanks for any help!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+var disqus_url = '/2011/03/04/jqcloud-a-jquery-plugin-to-build-neat-word-clouds/';
+var disqus_identifier = '25 http://primegap.net/?p=25';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'primegap';
+var disqus_title = "jQCloud, a jQuery plugin to build neat word clouds (that actually look like clouds)";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+
+
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=25';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+
+
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main -->
+		<footer id="colophon" class="site-footer" role="contentinfo">
+				<div id="secondary" class="sidebar-container" role="complementary">
+		<div class="widget-area">
+			<aside id="text-2" class="widget widget_text"><h3 class="widget-title">About</h3>			<div class="textwidget"><p><a href="http://andreamostosi.name">Andrea Mostosi</a> lives in Bergamo and works in Milano, Italy<br />
+<a href="http://lucaongaro.eu">Luca Ongaro</a> and <a href="http://lucatironi.net">Luca Tironi</a> live and work in Berlin, Germany.</p>
+<p>They are geeks and proud nerds. They believe in the power of knowledge and the Force.</p>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Twitter</h3>			<div class="textwidget"><p>You should follow us on <a href="http://twitter.com/primegap">Twitter</a></p>
+<p><a href="http://twitter.com/lucaongaro">@lucaongaro</a><br />
+<a href="http://twitter.com/lucatironi">@lucatironi</a><br />
+<a href="http://twitter.com/zenkay">@zenkay</a></p>
+</div>
+		</aside><aside id="nav_menu-2" class="widget widget_nav_menu"><h3 class="widget-title">Menu</h3><div class="menu-home-menu-container"><ul id="menu-home-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-330"><a href="http://primegap.net/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329"><a href="/projects/">Projects</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-331"><a href="/category/tutorial/">Tutorials</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-post-parent menu-item-328"><a href="/about/">About</a></li>
+</ul></div></aside><aside id="meta-3" class="widget widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="http://primegap.net/wp-login.php">Log in</a></li>
+			<li><a href="/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://primegap.disqus.com/latest.rss" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</aside>		</div><!-- .widget-area -->
+	</div><!-- #secondary -->
+
+			<div class="site-info">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'primegap';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        <script type='text/javascript' src='http://primegap.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='http://primegap.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='http://primegap.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://primegap.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://primegap.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeRDark.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['tab-size'] = 2;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='http://primegap.net/wp-includes/js/jquery/jquery.masonry.min.js?ver=2.1.05'></script>
+<script type='text/javascript' src='http://primegap.net/wp-content/themes/twentythirteen/js/functions.js?ver=2013-07-18'></script>
+</body>
+</html>
